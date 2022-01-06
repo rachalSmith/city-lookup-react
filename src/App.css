@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.75fr 0.5fr 2.5fr;
+  gap: 0% 0%;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header"
+    "input-field"
+    "data-container";
+    gap: 3%;
+  text-align: center;
+  padding: 5px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  grid-area: header;
+  border: solid yellow;
+}
+
+.input-field {
+  grid-area: input-field;
+  border: solid blue;
+}
+
+.data-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "radar-chart average-calculation";
+  grid-area: data-container;
+  gap: 0% 2%;
+  border: solid tomato;
+  padding: 3px;
+}
+
+.radar-chart {
+  grid-area: radar-chart;
+  border: solid teal;
+}
+
+.average-calculation {
+  grid-area: average-calculation;
+  border: solid rebeccapurple;
+}
