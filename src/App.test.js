@@ -4,7 +4,10 @@ import App from './App';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 
-// mock API data goes here
+
+//TODO: REFACTOR MOCKED RESPONSE TEST. TEST IS PASSING BUT SHOULDNT
+
+// mock API data
 const mockCityData = [
   {color: '#f3c32c', name: 'Housing', score_out_of_10: 6.455500000000001},
   {color: '#f3d630', name: 'Cost of Living', score_out_of_10: 5.049000000000001},
@@ -28,11 +31,12 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+
 it('should make a call to the API', async () => {
   render(<App /> );
 
-  const listItems = await screen.findByRole('listitem');
-  expect(listItems).toHaveTextContent('Housing');
+  const data = await screen.findByTestId('data');
+  expect(data).toBeVisible();
 })
 
 

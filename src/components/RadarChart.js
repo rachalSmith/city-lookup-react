@@ -2,7 +2,7 @@ function RadarChart({ data }) {
     return (
       <div className="radar-chart">
         <p>Radar Chart</p>
-        <div>{data}</div>
+        <p data-testid="data">{data}</p>
       </div>
     );
   }

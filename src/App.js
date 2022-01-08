@@ -24,7 +24,7 @@ function App() {
 
         //const results = data.summary
 
-        console.log(results);
+        parsedData(results);
       }
       catch(error) {
         console.log('error', error);
@@ -33,22 +33,33 @@ function App() {
 
     fetchCities();
 
+    const parsedData = (results) => {
+
+      //console.log(results)
+
+      const cleanData = results.map(scores => {
+        return (
+          <li>
+            {[scores.name, scores.score_out_of_10]}
+          </li>
+        )
+      })
+
+      setRadarData(cleanData)
+    }
 
   }, [])
 
-  // const [radarData, setRadarData] = useState({});
-
+   const [radarData, setRadarData] = useState();
+   console.log(radarData)
 
   return (
     <div className="container">
       <Header />
       <InputField />
       <div className="data-container">
-        <RadarChart data={"data placeholder"}/>
+        <RadarChart data={radarData}/>
         <AverageCalculation />
-        <ul>
-          <li>Housing</li>
-        </ul>
       </div>
     </div>
   );
