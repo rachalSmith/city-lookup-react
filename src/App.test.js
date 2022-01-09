@@ -1,51 +1,57 @@
-import { render, screen } from '@testing-library/react';
+import React from "react";
 import App from './App';
+
+import { render, screen } from '@testing-library/react';
+import "@testing-library/jest-dom/extend-expect";
 
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 
 
-//TODO: REFACTOR MOCKED RESPONSE TEST. TEST IS PASSING BUT SHOULDNT
-
-// mock API data
-const mockCityData = [
+// mock API data for Manchester
+const mockCityDataManchester = {
+  categories: [
   {color: '#f3c32c', name: 'Housing', score_out_of_10: 6.455500000000001},
   {color: '#f3d630', name: 'Cost of Living', score_out_of_10: 5.049000000000001},
   {color: '#f4eb33', name: 'Startups', score_out_of_10: 5.769500000000001}
-];
+  ],
+  summary: "<p>Manchester, United Kingdom, is among the top cities with",
+  teleport_city_score: 60.752702702702685
+}
 
-// set up server, server listens for any get request to the url and instead of returning a
-// real response, returns a mock response with json body where recipes property is set to
-// allRecipies declared above
+const citiesUrl = 'https://api.teleport.org/api/urban_areas/slug:manchester/scores/'
+
+// sets up a server which listens for any get request to the url and
+// returns a mock response with json body where data property is set to
+// the mock data declared above
 const server = setupServer(
-  rest.get('https://api.teleport.org/api/urban_areas/slug:vancouver/scores/', (req, res, ctx) => {
-     res(ctx.json({data: mockCityData}))
+  rest.get(citiesUrl, (req, res, ctx) => {
+     return res(ctx.json({ data: mockCityDataManchester }))
   }),
 )
 
-
-// make sure server is listening to intercept http requests
+// ensure server is listening to intercept http requests
 //
-// after all tests have run, close connection with server
+// close connection with server
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 
-it('should make a call to the API', async () => {
+it('should render API data', async () => {
   render(<App /> );
 
-  const data = await screen.findByTestId('data');
+  const data = await screen.findByTestId('radarData');
   expect(data).toBeVisible();
 })
+
 
 
 it('should render the Header component', () => {
   render(<App />);
   const headerComponent = screen.getByRole('heading');
-  expect(headerComponent).toBeInTheDocument();
+  expect(headerComponent).toBeVisible();
 });
-
 
 
 describe('InputField Component', () => {
@@ -61,11 +67,12 @@ describe('InputField Component', () => {
 it('Should render the RadarChart component', () => {
   render(<App />);
   const radarChartComponent = screen.getByText('Radar Chart');
-  expect(radarChartComponent).toBeInTheDocument();
+  expect(radarChartComponent).toBeVisible();
 });
+
 
 it('Should render the AverageCalculation component', () => {
   render(<App />);
   const avCalcComponent = screen.getByText('Average Calculation');
-  expect(avCalcComponent).toBeInTheDocument();
+  expect(avCalcComponent).toBeVisible();
 });

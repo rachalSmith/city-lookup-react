@@ -2,7 +2,7 @@ function InputField() {
     return (
       <div className="input-field">
         <form>
-          <label for="input-field">Search</label>
+          <label htmlFor="input-field">Search</label>
           <input
             type="text"
             placeholder="e.g. Manchester"

@@ -20,11 +20,7 @@ function App() {
         const response = await fetch(citiesUrl);
         const data = await response.json();
 
-        const results = data.categories;
-
-        //const results = data.summary
-
-        parsedData(results);
+        parsedData(data);
       }
       catch(error) {
         console.log('error', error);
@@ -33,9 +29,11 @@ function App() {
 
     fetchCities();
 
-    const parsedData = (results) => {
+    const parsedData = (data) => {
 
-      //console.log(results)
+      console.log(data)
+
+      const results = data.categories;
 
       const cleanData = results.map(scores => {
         return (
