@@ -1,8 +1,8 @@
 import './App.css';
-import AverageCalculation from './components/AverageCalculation';
-import Header from './components/Header';
-import InputField from './components/InputField';
-import RadarChart from './components/RadarChart';
+import AverageCalculation from './components/AverageCalculation/AverageCalculation';
+import Header from './components/Header/Header';
+import InputField from './components/InputField/InputField';
+import RadarChart from './components/RadarChart/RadarChart';
 
 import { useState, useEffect } from 'react';
 
@@ -49,7 +49,6 @@ function App() {
   }, [])
 
    const [radarData, setRadarData] = useState();
-   console.log(radarData)
 
   return (
     <div className="container">
