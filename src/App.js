@@ -1,8 +1,7 @@
 import './App.css';
-import AverageCalculation from './components/AverageCalculation/AverageCalculation';
-import Header from './components/Header/Header';
-import InputField from './components/InputField/InputField';
-import RadarChart from './components/RadarChart/RadarChart';
+import BarChartComponent from './components/BarChartComponent';
+import LineChartComponent from './components/LineChartComponent';
+import Header from './components/Header';
 
 import { useState, useEffect } from 'react';
 
@@ -11,55 +10,90 @@ function App() {
 
   useEffect(() => {
 
-    const cityQuery = "manchester";
-    const citiesUrl = `https://api.teleport.org/api/urban_areas/slug:${cityQuery}/scores/`
+    const speciesURL = 'https://swapi.dev/api/species';
+    const planetsURL = 'https://swapi.dev/api/planets';
 
-    //  Returns a raw array of data from API
-    const fetchCities = async () => {
+
+//  Returns a raw array of data from API
+    const fetchSpecies = async () => {
       try {
-        const response = await fetch(citiesUrl);
+        const response = await fetch(speciesURL);
         const data = await response.json();
 
-        parsedData(data);
+        const { results } = data;
+
+        parsedSpeciesData(results);
       }
       catch(error) {
         console.log('error', error);
       }
     }
+    fetchSpecies();
 
-    fetchCities();
 
-    const parsedData = (data) => {
+//  Returns a raw array of data from API
+    const fetchPlanets = async () => {
+      try {
 
-      console.log(data)
+        const response = await fetch(planetsURL);
+        const data = await response.json();
 
-      const results = data.categories;
+        const { results } = data;
 
-      const cleanData = results.map(scores => {
-        return (
-          <li>
-            {[scores.name, scores.score_out_of_10]}
-          </li>
-        )
-      })
+        parsedPlanetData(results);
+      }
+      catch(error) {
+        console.log('error', error);
+      }
+    }
+    fetchPlanets();
 
-      setRadarData(cleanData)
+
+//  Returns parsed data for species and sets data as state.
+    const parsedSpeciesData = (results) => {
+
+      const cleanData = results.map(species => {
+        return {
+          name: species.name,
+          averageHeight: Number(species.average_height)
+        };
+      }).filter(species => !isNaN(species.averageHeight));
+      cleanData.splice(5, 4);
+
+      setBarData(cleanData);
+    }
+
+
+//  Returns parsed data for species and sets data as state.
+    const parsedPlanetData = (results) => {
+
+      const cleanData = results.map(planets => {
+        return {
+          name: planets.name,
+          diameter: (planets.diameter) / 1000,
+          day: planets.rotation_period,
+        };
+      }).filter(planets => planets.diameter <= 100);
+
+      setLineData(cleanData);
     }
 
   }, [])
 
-   const [radarData, setRadarData] = useState();
+
+  const [barData, setBarData] = useState({});
+  const [lineData, setLineData] = useState({});
+
 
   return (
     <div className="container">
       <Header />
-      <InputField />
-      <div className="data-container">
-        <RadarChart data={radarData}/>
-        <AverageCalculation />
-      </div>
+      <BarChartComponent barChartData={barData}/>
+      <LineChartComponent lineChartData={lineData}/>
     </div>
   );
 }
 
 export default App;
+
+

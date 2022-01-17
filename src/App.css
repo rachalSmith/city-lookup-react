@@ -1,57 +1,38 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
-.container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.75fr 0.5fr 2.5fr;
-  gap: 0% 0%;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "header"
-    "input-field"
-    "data-container";
-    gap: 3%;
+.App {
   text-align: center;
-  padding: 5px;
-  height: 100vh;
-  width: 100vw;
 }
 
-.header {
-  grid-area: header;
-  border: solid yellow;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.input-field {
-  grid-area: input-field;
-  border: solid blue;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.data-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "radar-chart average-calculation";
-  grid-area: data-container;
-  gap: 0% 2%;
-  border: solid tomato;
-  padding: 3px;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.radar-chart {
-  grid-area: radar-chart;
-  border: solid teal;
+.App-link {
+  color: #61dafb;
 }
 
-.average-calculation {
-  grid-area: average-calculation;
-  border: solid rebeccapurple;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
