@@ -8,5 +8,6 @@ import "@testing-library/jest-dom/extend-expect";
 it('should render the Header component', () => {
     render(<Header />);
     const headerComponent = screen.getByRole('heading');
+
     expect(headerComponent).toBeVisible();
   });
