@@ -1,0 +1,24 @@
+
+.suggestion-container {
+    border: solid pink;
+    z-index: 10;
+    position: absolute;
+}
+
+
+.suggestions {
+    border: solid gray;
+}
+
+.input-field-container {
+    grid-area: input-field;
+    border: solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .input-field {
+    border: solid brown;
+  }
