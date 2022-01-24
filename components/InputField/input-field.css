@@ -1,8 +1,19 @@
+.input-field-container {
+  grid-area: input-field;
+  /* border: solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 25%;
+}
 
 .suggestion-container {
     border: solid pink;
     z-index: 10;
     position: absolute;
+    top: 70%;
 }
 
 
@@ -10,15 +21,23 @@
     border: solid gray;
 }
 
-.input-field-container {
-    grid-area: input-field;
-    border: solid blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+
+.input-field {
+  border: solid #087c678e;
+  width: 750px;
+  height: 39px;
+  font-size: 16px;
+  padding-left: 1%;
+  border-radius: 20px;
+  outline: none;
+}
+
+.label {
+    /* border: salmon solid; */
+
+    margin-bottom: 5px;
+    margin-left: 10px;
+    color: rgb(55, 59, 59);
   }
 
-  .input-field {
-    border: solid brown;
-  }
+

@@ -72,15 +72,16 @@ function InputField({ onSubmit }) {
 
 
   return (
-    <div className="input-field-container">
-      <form>
-        <label htmlFor="input-field">Search</label>
+    <>
+      <form className="input-field-container">
+        <label htmlFor="input-field" className="label">Search</label>
         <input
         className="input-field"
           type="text"
           placeholder="e.g. Manchester"
           id="input-field"
           name="input-field"
+          autocomplete="off"
           value={text}
           onChange={event => setText(event.target.value), event => handleSuggestions(event.target.value)}
           onKeyPress={handleKeyPress}
@@ -100,8 +101,8 @@ function InputField({ onSubmit }) {
         )}
         </div>
       </form>
-      <button className="find=button" onClick={handleOnSubmit}>Find</button>
-    </div>
+      <button className="search-button" onClick={handleOnSubmit}><span className="search-button-text">Find</span></button>
+    </>
   );
 }
 
