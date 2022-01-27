@@ -9,6 +9,7 @@
     justify-content: center;
     padding-bottom: 10vh;
     grid-area: header;
+    border: rgb(253, 254, 255) solid 20px;
 }
 
 .header {

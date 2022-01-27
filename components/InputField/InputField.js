@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-function InputField({ onSubmit }) {
 
+function InputField({ onSubmit }) {
 
   const [text, setText] = useState('');
   const [cityNames, setCityNames] = useState([]);
@@ -9,9 +9,7 @@ function InputField({ onSubmit }) {
 
   useEffect(() => { fetchAllCities()}, []);
 
-
   const allCitiesUrl = 'https://api.teleport.org/api/urban_areas/';
-
 
   //  Returns a raw array of data from API
   const fetchAllCities = async () => {
@@ -101,9 +99,14 @@ function InputField({ onSubmit }) {
         )}
         </div>
       </form>
-      <button className="search-button" onClick={handleOnSubmit}><span className="search-button-text">Find</span></button>
+      <button
+        className="search-button"
+        onClick={handleOnSubmit}>
+        <span className="search-button-text">Find</span>
+      </button>
     </>
   );
 }
+
 
 export default InputField;

@@ -11,4 +11,5 @@ function AverageScore({ avScore }) {
     );
   }
 
+
   export default AverageScore;

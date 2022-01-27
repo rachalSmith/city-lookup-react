@@ -1,5 +1,6 @@
 import arrow from '../../images/arrow.png'
 
+
 function Header() {
     return (
       <div className="hero-container">
@@ -11,5 +12,6 @@ function Header() {
       </div>
     );
   }
+
 
   export default Header;
