@@ -19,6 +19,7 @@ Eventually, other features will be added: two input fields to compare cities, se
 - [ ] Limit number of returned cities in autocomplete to 8. 
 - [ ] Add automatic scroll down to arrow icon on hero image. 
 - [ ] Mobile version. 
+- [ ] Refactor. 
 - [ ] Additional unit and intergration tests.  
 
 
