@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-function InputField({ onSubmit }) {
 
+function InputField({ onSubmit }) {
 
   const [text, setText] = useState('');
   const [cityNames, setCityNames] = useState([]);
@@ -9,9 +9,7 @@ function InputField({ onSubmit }) {
 
   useEffect(() => { fetchAllCities()}, []);
 
-
   const allCitiesUrl = 'https://api.teleport.org/api/urban_areas/';
-
 
   //  Returns a raw array of data from API
   const fetchAllCities = async () => {
@@ -72,15 +70,16 @@ function InputField({ onSubmit }) {
 
 
   return (
-    <div className="input-field-container">
-      <form>
-        <label htmlFor="input-field">Search</label>
+    <>
+      <form className="input-field-container">
+        <label htmlFor="input-field" className="label">Search</label>
         <input
         className="input-field"
           type="text"
           placeholder="e.g. Manchester"
           id="input-field"
           name="input-field"
+          autocomplete="off"
           value={text}
           onChange={event => setText(event.target.value), event => handleSuggestions(event.target.value)}
           onKeyPress={handleKeyPress}
@@ -91,16 +90,23 @@ function InputField({ onSubmit }) {
           }}
         >
         </input>
-        {suggestions && suggestions.map((suggestion, i)=>
-        <div
+        <div className="suggestion-container">
+        {suggestions && suggestions.map((suggestion, i) =>
+        <div className="suggestions"
           key ={i}
           onClick={() => clickSuggestions(suggestion)}
         >{suggestion}</div>
         )}
+        </div>
       </form>
-      <button className="find=button" onClick={handleOnSubmit}>Find</button>
-    </div>
+      <button
+        className="search-button"
+        onClick={handleOnSubmit}>
+        <span className="search-button-text">Find</span>
+      </button>
+    </>
   );
 }
+
 
 export default InputField;
