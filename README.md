@@ -13,11 +13,11 @@ Eventually, other features will be added: two input fields to compare cities, se
 
 
 ### Project status: In active development
-- [ ] Use API call to dynamically add number of cities available to search.
-- [ ] Use API call to dynamically add name of city as title to radar chart.
+- [x] Use API call to dynamically add number of cities available to search.
+- [x] Use API call to dynamically add name of city as title to radar chart.
 - [ ] Change initial state of average score and radar chart - no default API call.
 - [ ] Limit number of returned cities in autocomplete to 8. 
-- [ ] Add automatic scroll down to arrow icon on hero image. 
+- [x] Add automatic scroll down to arrow icon on hero image. 
 - [ ] Mobile version. 
 - [ ] Refactor. 
 - [ ] Additional unit and intergration tests.  
