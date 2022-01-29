@@ -1,10 +1,18 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
 
-function RadarChartComponent({ categoryData }) {
+function RadarChartComponent({ categoryData, cityName }) {
+
+
+
+
+
+
     return (
       <div className="radar-chart-container">
-        <p className="radar-chart-title">For: CITY</p>
+        <p className="radar-chart-title">
+          Scores for: {cityName.charAt(0).toUpperCase() + cityName.slice(1)}
+        </p>
         { categoryData &&
         <ResponsiveContainer width="100%" aspect={2} className="radar-chart">
         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={categoryData}>

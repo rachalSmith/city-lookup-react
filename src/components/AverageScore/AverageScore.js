@@ -1,4 +1,6 @@
 function AverageScore({ avScore }) {
+
+
     return (
       <div className="average-calculation">
         <p className="av-score-heading">Average Score</p>

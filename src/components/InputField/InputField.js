@@ -1,40 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
-function InputField({ onSubmit }) {
+function InputField({ onSubmit, cityNames }) {
+
 
   const [text, setText] = useState('');
-  const [cityNames, setCityNames] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
 
-  useEffect(() => { fetchAllCities()}, []);
 
-  const allCitiesUrl = 'https://api.teleport.org/api/urban_areas/';
-
-  //  Returns a raw array of data from API
-  const fetchAllCities = async () => {
-    try {
-      const response = await fetch(allCitiesUrl);
-      const data = await response.json();
-
-      parseAllCities(data);
-    }
-    catch(error) {
-      console.log('error', error);
-    }
-  }
-
-  // parses all names for autofill
-  const parseAllCities = (data) => {
-    const namesAndHrefs = data["_links"]["ua:item"];
-    const names = namesAndHrefs.map(
-      nameAndHref => nameAndHref.name
-    );
-
-    setCityNames(names);
-  }
-
-
+  // passes text to parent to be used in Api call and resets input field text
   const handleOnSubmit = (event) => {
     event.preventDefault();
     if(!text) {
@@ -45,12 +19,16 @@ function InputField({ onSubmit }) {
     setText('');
   }
 
+
+  // allows user to sumbit city using enter button
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleOnSubmit(event);
     }
   }
 
+
+  // matches user input to list of cities available to query
   const handleSuggestions = (event) => {
     setText(event)
         let matches = [];
@@ -63,6 +41,8 @@ function InputField({ onSubmit }) {
     setSuggestions(matches);
   }
 
+
+  // sets clicked autocomplete suggestion as text and resets suggestions to empty array
   const clickSuggestions = (text) => {
     setText(text);
     setSuggestions([]);
@@ -74,7 +54,7 @@ function InputField({ onSubmit }) {
       <form className="input-field-container">
         <label htmlFor="input-field" className="label">Search</label>
         <input
-        className="input-field"
+          className="input-field"
           type="text"
           placeholder="e.g. Manchester"
           id="input-field"
@@ -91,12 +71,12 @@ function InputField({ onSubmit }) {
         >
         </input>
         <div className="suggestion-container">
-        {suggestions && suggestions.map((suggestion, i) =>
-        <div className="suggestions"
-          key ={i}
-          onClick={() => clickSuggestions(suggestion)}
-        >{suggestion}</div>
-        )}
+          {suggestions && suggestions.map((suggestion, i) =>
+          <div className="suggestions"
+            key ={i}
+            onClick={() => clickSuggestions(suggestion)}
+          >{suggestion}</div>
+          )}
         </div>
       </form>
       <button

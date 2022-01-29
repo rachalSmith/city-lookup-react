@@ -1,99 +1,130 @@
 import './App.css';
-import BarChartComponent from './components/BarChartComponent';
-import LineChartComponent from './components/LineChartComponent';
-import Header from './components/Header';
+import AverageScore from './components/AverageScore/AverageScore';
+import Header from './components/Header/Header';
+import Instructions from './components/Instructions/Instructions';
+import InputField from './components/InputField/InputField';
+import RadarChartComponent from './components/RadarChart/RadarChart';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 function App() {
 
-  useEffect(() => {
 
-    const speciesURL = 'https://swapi.dev/api/species';
-    const planetsURL = 'https://swapi.dev/api/planets';
+  const [cityQuery, setCityQuery] = useState('halifax');
+  const [cityCategoryData, setCityCategoryData] = useState(null);
+  const [avScore, setAvScore] = useState();
+  const [totalCities, setTotalCities] = useState();
+  const [cityNames, setCityNames] = useState([]);
 
 
-//  Returns a raw array of data from API
-    const fetchSpecies = async () => {
-      try {
-        const response = await fetch(speciesURL);
-        const data = await response.json();
+  useEffect(() => { fetchCityData()}, [cityQuery]);
+  useEffect(() => {fetchCityList()}, [cityQuery]);
 
-        const { results } = data;
 
-        parsedSpeciesData(results);
-      }
-      catch(error) {
-        console.log('error', error);
-      }
+  // Cleans input from field and sets text as cityQuery to be used in URL
+    const handleInputFieldText = (text) => {
+    setCityQuery(text
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-'));
+  }
+
+
+  // api calls: 1. list of all available cities with score data
+  //            2. corresponding city score data
+  const citiesListUrl = 'https://api.teleport.org/api/urban_areas/';
+  const cityScoreUrl = `https://api.teleport.org/api/urban_areas/slug:${cityQuery}/scores/`;
+
+
+  //  Returns city score data and sets state with helper functions
+  const fetchCityData = async () => {
+    try {
+      const response = await fetch(cityScoreUrl);
+      const data = await response.json();
+      parsedCityCategoryData(data);
+      parsedAvScoreData(data);
     }
-    fetchSpecies();
+    catch(error) {
+      alert('error', error);
+    }
+  }
 
 
-//  Returns a raw array of data from API
-    const fetchPlanets = async () => {
-      try {
+  //  Returns a list of all available cities and sets state
+  const fetchCityList = async () => {
+    try {
+      const response = await fetch(citiesListUrl);
+      const data = await response.json();
 
-        const response = await fetch(planetsURL);
-        const data = await response.json();
+      const namesAndHrefs = data["_links"]["ua:item"];
+      const names = namesAndHrefs.map(
+        nameAndHref => nameAndHref.name
+      );
 
-        const { results } = data;
+      setTotalCities(data.count);
+      setCityNames(names)
+    }
+    catch(error) {
+      console.log('error', error);
+    }
+  }
 
-        parsedPlanetData(results);
+
+  // parses category data for radar chart component
+  const parsedCityCategoryData = (data) => {
+    const { categories } = data;
+    let removedCategories = [
+      'Housing',
+      'Venture Capital',
+      'Travel Connectivity',
+      'Business Freedom',
+      'Startups',
+      'Healthcare',
+      'Education',
+      'Environmental Quality',
+      'Economy',
+      'Taxation',
+      'Internet Access'
+    ];
+
+    const cleanData = categories.map(category => {
+      return {
+        name: category.name,
+        score: parseFloat(category.score_out_of_10.toFixed(1))
       }
-      catch(error) {
-        console.log('error', error);
-      }
-    }
-    fetchPlanets();
+    }).filter(category => !removedCategories.includes(category.name));
+
+    setCityCategoryData(cleanData);
+  }
 
 
-//  Returns parsed data for species and sets data as state.
-    const parsedSpeciesData = (results) => {
-
-      const cleanData = results.map(species => {
-        return {
-          name: species.name,
-          averageHeight: Number(species.average_height)
-        };
-      }).filter(species => !isNaN(species.averageHeight));
-      cleanData.splice(5, 4);
-
-      setBarData(cleanData);
-    }
+  // parses average score for average score component
+  const parsedAvScoreData = (data) => {
+    const { teleport_city_score } = data;
+    const score = parseFloat(teleport_city_score.toFixed(1));
+    setAvScore(score);
+  }
 
 
-//  Returns parsed data for species and sets data as state.
-    const parsedPlanetData = (results) => {
-
-      const cleanData = results.map(planets => {
-        return {
-          name: planets.name,
-          diameter: (planets.diameter) / 1000,
-          day: planets.rotation_period,
-        };
-      }).filter(planets => planets.diameter <= 100);
-
-      setLineData(cleanData);
-    }
-
-  }, [])
-
-
-  const [barData, setBarData] = useState({});
-  const [lineData, setLineData] = useState({});
+  // scroll to data container from hero image
+  const scrollToRef = (ref) => ref.current.scrollIntoView({behavior: 'smooth'});
+  const myRef = useRef(null);
+  const executeScroll = () => scrollToRef(myRef);
 
 
   return (
     <div className="container">
-      <Header />
-      <BarChartComponent barChartData={barData}/>
-      <LineChartComponent lineChartData={lineData}/>
+
+      <Header executeScroll={executeScroll}/>
+      <Instructions totalCities={totalCities} />
+      <InputField  onSubmit={handleInputFieldText} cityNames={cityNames}/>
+      <div className="data-container" ref={myRef}>
+        <RadarChartComponent categoryData={cityCategoryData} cityName={cityQuery}/>
+        <AverageScore avScore={avScore}/>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-

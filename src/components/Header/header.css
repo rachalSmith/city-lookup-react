@@ -18,8 +18,18 @@
     letter-spacing: 1.8px;
     color: white;
     line-height: 190%;
-    /* filter: drop-shadow(0 0 0.75rem #898999); */
     filter: drop-shadow(0 0 0.75rem #7a6280);
-  }
+}
+
+.arrow {
+    filter: drop-shadow(0 0 0);
+    transition: filter 0.3s ease-in-out;
+}
+
+
+.arrow:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.2rem #ebcbe5);
+}
 
 
