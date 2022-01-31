@@ -11,9 +11,16 @@ import { useState, useEffect, useRef } from 'react';
 function App() {
 
 
-  const [cityQuery, setCityQuery] = useState('halifax');
-  const [cityCategoryData, setCityCategoryData] = useState(null);
-  const [avScore, setAvScore] = useState();
+  const [cityQuery, setCityQuery] = useState('');
+  const [cityCategoryData, setCityCategoryData] = useState([
+    {name: 'Cost of Living', score: 0},
+    {name: 'Commute', score: 0},
+    {name: 'Safety', score: 0},
+    {name: 'Leisure & Culture', score: 0},
+    {name: 'Tolerance', score: 0},
+    {name: 'Outdoors', score: 0}
+  ]);
+  const [avScore, setAvScore] = useState(0);
   const [totalCities, setTotalCities] = useState();
   const [cityNames, setCityNames] = useState([]);
 
@@ -46,7 +53,7 @@ function App() {
       parsedAvScoreData(data);
     }
     catch(error) {
-      alert('error', error);
+      console.log('error', error);
     }
   }
 

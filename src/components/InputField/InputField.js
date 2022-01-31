@@ -11,10 +11,10 @@ function InputField({ onSubmit, cityNames }) {
   // passes text to parent to be used in Api call and resets input field text
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    if(!text) {
-      alert('Please add a city');
-      return
-  }
+  //   if(!text) {
+  //     alert('Please add a city');
+  //     return
+  // }
     onSubmit(text);
     setText('');
   }
@@ -28,17 +28,17 @@ function InputField({ onSubmit, cityNames }) {
   }
 
 
-  // matches user input to list of cities available to query
+  // matches user input to list of cities available to max 9 querie
   const handleSuggestions = (event) => {
     setText(event)
-        let matches = [];
-      if (event.length > 0) {
+    let matches = [];
+    if (event.length > 0) {
       matches = cityNames.filter( name => {
-        const regex = new RegExp(`${event}`, "gi");
-        return name.match(regex)
+      const regex = new RegExp(`${event}`, "gi");
+      return name.match(regex);
       })
     }
-    setSuggestions(matches);
+    setSuggestions(matches.slice(0, 9));
   }
 
 
@@ -59,7 +59,7 @@ function InputField({ onSubmit, cityNames }) {
           placeholder="e.g. Manchester"
           id="input-field"
           name="input-field"
-          autocomplete="off"
+          autoComplete="off"
           value={text}
           onChange={event => setText(event.target.value), event => handleSuggestions(event.target.value)}
           onKeyPress={handleKeyPress}
