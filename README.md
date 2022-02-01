@@ -15,6 +15,7 @@ Information as scores out of 10 will be returned, such as Cost of Living and Com
 - [x] Change initial state of average score and radar chart - no default API call.
 - [x] Limit number of returned cities in autocomplete to 9. 
 - [x] Add automatic scroll down to arrow icon on hero image. 
+- [ ] Moblie Version. 
 - [ ] Nav. 
 - [ ] Routing to about page. 
 - [ ] Additional unit and intergration tests.  
