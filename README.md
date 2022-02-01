@@ -8,9 +8,6 @@ Using the Teleport API, this app will allow you to enter a city into the input.
 
 Information as scores out of 10 will be returned, such as Cost of Living and Commute. 
 
-Eventually, other features will be added: two input fields to compare cities, search autofill, onHover to explain how scores are calculated. 
-
-
 
 ### Project status: In active development
 - [x] Use API call to dynamically add number of cities available to search.
@@ -18,10 +15,16 @@ Eventually, other features will be added: two input fields to compare cities, se
 - [x] Change initial state of average score and radar chart - no default API call.
 - [x] Limit number of returned cities in autocomplete to 9. 
 - [x] Add automatic scroll down to arrow icon on hero image. 
-- [ ] Mobile version. 
-- [ ] Refactor. 
+- [ ] Nav. 
+- [ ] Routing to about page. 
 - [ ] Additional unit and intergration tests.  
+- [ ] Refactor.  
 
+### Deployment
+
+App is not yet complete but can be viewed in its current state here:  
+
+https://rachalsmith.github.io/deployed-city-lookup-react/
 
 ### Usage
 
