@@ -11,10 +11,6 @@ function InputField({ onSubmit, cityNames }) {
   // passes text to parent to be used in Api call and resets input field text
   const handleOnSubmit = (event) => {
     event.preventDefault();
-  //   if(!text) {
-  //     alert('Please add a city');
-  //     return
-  // }
     onSubmit(text);
     setText('');
   }
@@ -28,7 +24,7 @@ function InputField({ onSubmit, cityNames }) {
   }
 
 
-  // matches user input to list of cities available to max 9 querie
+  // matches user input to list of cities available to max 9 queries
   const handleSuggestions = (event) => {
     setText(event)
     let matches = [];

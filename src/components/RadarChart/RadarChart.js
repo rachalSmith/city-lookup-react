@@ -11,7 +11,7 @@ function RadarChartComponent({ categoryData, cityName }) {
         Scores for {cityName === "" ? 'City' : cityName}
       </p>
       { categoryData &&
-      <ResponsiveContainer width="100%" aspect={2} className="radar-chart">
+      <ResponsiveContainer width="99%" aspect={2} className="radar-chart">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={categoryData}>
         <PolarGrid />
         <PolarAngleAxis dataKey="name" />
