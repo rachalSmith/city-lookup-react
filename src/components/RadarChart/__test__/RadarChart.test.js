@@ -40,3 +40,7 @@ it('should render API data', async () => {
 //     expect(asyncData.textContent).toContain('Housing')
 
 //   })
+
+// it('should convert the city name to have an uppercase for the first letter', () => {})
+
+// it('should display a city name prop or an empty string', () => {})

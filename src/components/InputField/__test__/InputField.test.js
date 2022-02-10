@@ -38,3 +38,6 @@ describe('text inside the input field', () => {
     expect(inputField.value).toBe('');
   })
 })
+
+// it('should display the autocomplete when text is added to the input field', () => {})
+// it('should display suggestions based on the text being added', () => {})
