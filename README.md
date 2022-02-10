@@ -18,6 +18,7 @@ Information as scores out of 10 will be returned, such as Cost of Living and Com
 - [x] Moblie Version. 
 - [ ] Prop types.
 - [ ] Additional unit and intergration tests.  
+- [ ] Redesign with bootstrap.
 - [ ] Nav. 
 - [ ] Routing to about page. 
 
