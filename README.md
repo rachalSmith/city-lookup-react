@@ -16,7 +16,7 @@ Information as scores out of 10 will be returned, such as Cost of Living and Com
 - [x] Limit number of returned cities in autocomplete to 9. 
 - [x] Add automatic scroll down to arrow icon on hero image. 
 - [x] Moblie Version. 
-- [ ] Prop types.
+- [x] Prop types.
 - [ ] Additional unit and intergration tests.  
 - [ ] Redesign with bootstrap.
 - [ ] Nav. 
