@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 
 function InputField({ onSubmit, cityNames }) {
@@ -82,6 +83,12 @@ function InputField({ onSubmit, cityNames }) {
       </button>
     </>
   );
+}
+
+// PropTypes
+InputField.propTypes = {
+  onSubmit: PropTypes.func,
+  cityNames: PropTypes.array
 }
 
 

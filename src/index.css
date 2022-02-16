@@ -1,6 +1,7 @@
-@import url('./components/InputField/input-field.css');
-@import url('./components/Header/header.css');
-@import url('./components/InputField/search-button.css');
-@import url('./components/AverageScore/average-score.css');
-@import url('./components/RadarChart/radar-chart.css');
-@import url('./components/Instructions/instructions.css');
+@import url('./components/averageScore/average-score.css');
+@import url('./components/header/header.css');
+@import url('./components/inputField/input-field.css');
+@import url('./components/inputField/search-button.css');
+@import url('./components/instructions/instructions.css');
+@import url('./components/radarChart/radar-chart.css');
+

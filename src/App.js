@@ -1,9 +1,9 @@
 import './App.css';
-import AverageScore from './components/AverageScore/AverageScore';
-import Header from './components/Header/Header';
-import Instructions from './components/Instructions/Instructions';
-import InputField from './components/InputField/InputField';
-import RadarChartComponent from './components/RadarChart/RadarChart';
+import AverageScore from './components/averageScore/AverageScore';
+import Header from './components/header/Header';
+import Instructions from './components/instructions/Instructions';
+import InputField from './components/inputField/InputField';
+import RadarChartComponent from './components/radarChart/RadarChart';
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -120,6 +120,11 @@ function App() {
   const executeScroll = () => scrollToRef(myRef);
 
 
+  // UpperCase name of city to used as title for Radar Component
+  let cityName = cityQuery.charAt(0).toUpperCase() + cityQuery.slice(1);
+
+
+
   return (
     <div className="container">
 
@@ -127,7 +132,7 @@ function App() {
       <Instructions totalCities={totalCities} />
       <InputField  onSubmit={handleInputFieldText} cityNames={cityNames}/>
       <div className="data-container" ref={myRef}>
-        <RadarChartComponent categoryData={cityCategoryData} cityName={cityQuery}/>
+        <RadarChartComponent categoryData={cityCategoryData} cityName={cityName}/>
         <AverageScore avScore={avScore}/>
       </div>
     </div>
