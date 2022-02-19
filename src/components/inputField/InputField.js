@@ -69,7 +69,9 @@ function InputField({ onSubmit, cityNames }) {
         </input>
         <div className="suggestion-container">
           {suggestions && suggestions.map((suggestion, i) =>
-          <div className="suggestions"
+          <div
+            data-testid="suggestions"
+            className="suggestions"
             key ={i}
             onClick={() => clickSuggestions(suggestion)}
           >{suggestion}</div>
