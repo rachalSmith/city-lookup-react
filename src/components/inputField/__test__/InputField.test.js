@@ -7,7 +7,7 @@ const mockFunc = jest.fn()
 
 describe('InputField Component', () => {
   it('should render an input field', () => {
-    render(<InputField onChange={mockFunc}/>);
+    render(<InputField onSubmit={mockFunc}/>);
     const inputField = screen.getByLabelText('Search');
     expect(inputField).toHaveAttribute('name', 'input-field');
   })
@@ -16,7 +16,7 @@ describe('InputField Component', () => {
 
 describe('text inside the input field', () => {
   it('should display the text inside the input field', () => {
-    render(<InputField onChange={mockFunc}/>);
+    render(<InputField onSubmit={mockFunc}/>);
     const inputField = screen.getByPlaceholderText(/e.g. Manchester/i);
     const input = "manchester";
     fireEvent.change(inputField, {
@@ -27,7 +27,7 @@ describe('text inside the input field', () => {
 
 
   it('should clear text from the input field after find button is pressed', () => {
-    render(<InputField onChange={mockFunc}/>);
+    render(<InputField onSubmit={mockFunc}/>);
     const inputField = screen.getByPlaceholderText(/e.g. Manchester/i);
     const buttonElement = screen.getByRole('button', {name: /Find/i});
     const input = "manchester";
