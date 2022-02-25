@@ -49,6 +49,7 @@ function App() {
     try {
       const response = await fetch(cityScoreUrl);
       const data = await response.json();
+      console.log(data)
       parsedCityCategoryData(data);
       parsedAvScoreData(data);
     }

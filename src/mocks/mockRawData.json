@@ -1,0 +1,14 @@
+{
+    "categories": [
+        {
+            "name": "Housing",
+            "score_out_of_10": 6.5
+        },
+        {
+            "name": "Cost of Living",
+            "score_out_of_10": 5.0
+        }
+    ],
+    "summary": "summary of Manchester",
+    "teleport_city_score": 60.8
+}
